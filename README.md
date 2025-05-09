@@ -159,12 +159,6 @@ All endpoints are hosted at `http://localhost:3000`.
 
 ---
 
-## 📸 Screenshots
-
-(You can insert screenshots here if desired.)
-
----
-
 ## 🧑‍💻 Author
 
 **Your Name**  
