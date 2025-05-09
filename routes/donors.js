@@ -10,6 +10,17 @@ module.exports = (db) => {
     });
   });
 
+  // Get a specific donor by ID
+  router.get('/:id', (req, res) => {
+    const donorId = req.params.id;
+
+    db.query('SELECT * FROM Donors WHERE DonorID = ?', [donorId], (err, results) => {
+      if (err) return res.status(500).json({ error: 'Database error', details: err });
+      if (results.length === 0) return res.status(404).json({ message: 'Donor not found' });
+      res.json(results[0]);  // Send the first (and only) result
+    });
+  });
+
   // Add a new donor
   router.post('/', (req, res) => {
     const { Name, BloodType, Contact, DateOfBirth, Address, LastDonationDate } = req.body;

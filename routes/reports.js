@@ -10,6 +10,16 @@ module.exports = (db) => {
     });
   });
 
+  // Get a specific report by ID
+  router.get('/:id', (req, res) => {
+    const reportId = req.params.id;
+    db.query('SELECT * FROM Reports WHERE ReportID = ?', [reportId], (err, results) => {
+      if (err) return res.status(500).json({ error: 'Database error', details: err });
+      if (results.length === 0) return res.status(404).json({ message: 'Report not found' });
+      res.json(results[0]);  // Send the first (and only) result
+    });
+  });
+
   // Add a new report
   router.post('/', (req, res) => {
     const { HospitalID, BloodType, ShortageLevel, Date } = req.body;

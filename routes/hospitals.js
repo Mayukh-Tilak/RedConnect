@@ -10,6 +10,16 @@ module.exports = (db) => {
     });
   });
 
+  // Get a specific hospital by ID
+  router.get('/:id', (req, res) => {
+    const hospitalId = req.params.id;
+    db.query('SELECT * FROM Hospitals WHERE HospitalID = ?', [hospitalId], (err, results) => {
+      if (err) return res.status(500).json({ error: 'Database error', details: err });
+      if (results.length === 0) return res.status(404).json({ message: 'Hospital not found' });
+      res.json(results[0]);  // Send the first (and only) result
+    });
+  });
+
   // Add new hospital
   router.post('/', (req, res) => {
     const { Name, Location, Contact } = req.body;

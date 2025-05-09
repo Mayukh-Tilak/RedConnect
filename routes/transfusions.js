@@ -10,6 +10,16 @@ module.exports = (db) => {
     });
   });
 
+  // Get a specific transfusion by ID
+  router.get('/:id', (req, res) => {
+    const transfusionId = req.params.id;
+    db.query('SELECT * FROM Transfusions WHERE TransfusionID = ?', [transfusionId], (err, results) => {
+      if (err) return res.status(500).json({ error: 'Database error', details: err });
+      if (results.length === 0) return res.status(404).json({ message: 'Transfusion not found' });
+      res.json(results[0]);  // Send the first (and only) result
+    });
+  });
+
   // Add a new transfusion
   router.post('/', (req, res) => {
     const { HospitalID, PatientID, BloodType, Date } = req.body;

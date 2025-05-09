@@ -10,6 +10,16 @@ module.exports = (db) => {
     });
   });
 
+  // Get a specific appointment by ID
+  router.get('/:id', (req, res) => {
+    const appointmentId = req.params.id;
+    db.query('SELECT * FROM Appointments WHERE AppointmentID = ?', [appointmentId], (err, results) => {
+      if (err) return res.status(500).json({ error: 'Database error', details: err });
+      if (results.length === 0) return res.status(404).json({ message: 'Appointment not found' });
+      res.json(results[0]);  // Send the first (and only) result
+    });
+  });
+
   // Add a new appointment
   router.post('/', (req, res) => {
     const { DonorID, Date, Status } = req.body;

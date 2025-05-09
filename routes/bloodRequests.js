@@ -10,6 +10,16 @@ module.exports = (db) => {
     });
   });
 
+  // Get a specific blood request by ID
+  router.get('/:id', (req, res) => {
+    const requestId = req.params.id;
+    db.query('SELECT * FROM BloodRequests WHERE RequestID = ?', [requestId], (err, results) => {
+      if (err) return res.status(500).json({ error: 'Database error', details: err });
+      if (results.length === 0) return res.status(404).json({ message: 'Blood request not found' });
+      res.json(results[0]);  // Send the first (and only) result
+    });
+  });
+
   // Add a new blood request
   router.post('/', (req, res) => {
     const { HospitalID, BloodType, Urgency } = req.body;

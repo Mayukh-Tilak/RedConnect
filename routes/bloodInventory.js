@@ -10,6 +10,16 @@ module.exports = (db) => {
     });
   });
 
+  // Get a specific blood inventory by ID
+  router.get('/:id', (req, res) => {
+    const inventoryId = req.params.id;
+    db.query('SELECT * FROM BloodInventory WHERE InventoryID = ?', [inventoryId], (err, results) => {
+      if (err) return res.status(500).json({ error: 'Database error', details: err });
+      if (results.length === 0) return res.status(404).json({ message: 'Inventory item not found' });
+      res.json(results[0]);  // Send the first (and only) result
+    });
+  });
+
   // Add new inventory record
   router.post('/', (req, res) => {
     const { HospitalID, BloodType, Quantity, ExpiryDate } = req.body;
