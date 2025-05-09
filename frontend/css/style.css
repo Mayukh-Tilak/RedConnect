@@ -28,13 +28,13 @@ h1, h2, h3 {
 }
 
 /* Tab navigation styles */
-.nav-tabs {
+.tabs {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
 
-.nav-tabs button {
+.tabs button {
     background-color: #8B0000;
     color: white;
     padding: 10px 20px;
@@ -45,7 +45,7 @@ h1, h2, h3 {
     transition: background-color 0.3s ease;
 }
 
-.nav-tabs button:hover {
+.tabs button:hover {
     background-color: #b30000;
 }
 
@@ -206,11 +206,11 @@ button:disabled {
         padding: 10px;
     }
 
-    .nav-tabs {
+    .tabs {
         flex-direction: column;
     }
 
-    .nav-tabs button {
+    .tabs button {
         margin: 5px 0;
     }
 
@@ -263,4 +263,40 @@ button:disabled {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+/* Styles for individual tab content */
+.tab-content {
+    display: none;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.tab-content h2 {
+    margin-bottom: 15px;
+}
+
+.tab-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tab-content table, .tab-content th, .tab-content td {
+    border: 1px solid #ddd;
+}
+
+.tab-content th, .tab-content td {
+    padding: 10px;
+    text-align: left;
+}
+
+.tab-content th {
+    background-color: #8B0000;
+    color: white;
+}
+
+.tab-content tr:hover {
+    background-color: #f1f1f1;
 }

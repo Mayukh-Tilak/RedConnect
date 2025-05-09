@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RedConnect - Blood Donation System</title>
+  <title>PulseBank - Blood Donation System</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <div class="container">
     <header>
-      <h1>RedConnect</h1>
+      <h1>PulseBank</h1>
       <div class="tabs">
         <button class="tab-button" onclick="showTab('donorsTab')">Donors</button>
         <button class="tab-button" onclick="showTab('hospitalsTab')">Hospitals</button>
@@ -19,7 +19,6 @@
         <button class="tab-button" onclick="showTab('inventoryTab')">Blood Inventory</button>
         <button class="tab-button" onclick="showTab('reportsTab')">Reports</button>
         <button class="tab-button" onclick="showTab('transfusionsTab')">Transfusions</button>
-        <button class="tab-button" onclick="showTab('searchTab')">Search</button>
       </div>
     </header>
 
@@ -27,115 +26,235 @@
     <div id="donorsTab" class="tab-content">
       <h2>Manage Donors</h2>
       <form id="donorForm">
+        <label for="name">Name</label>
         <input type="text" id="name" placeholder="Name" required>
+
+        <label for="bloodType">Blood Type</label>
         <input type="text" id="bloodType" placeholder="Blood Type" required>
+
+        <label for="contact">Contact</label>
         <input type="text" id="contact" placeholder="Contact" required>
+
+        <label for="dob">Date of Birth</label>
         <input type="date" id="dob" placeholder="Date of Birth" required>
+
+        <label for="address">Address</label>
         <input type="text" id="address" placeholder="Address">
+
+        <label for="lastDonationDate">Last Donation Date</label>
         <input type="date" id="lastDonationDate" placeholder="Last Donation Date">
+
         <button type="submit">Add Donor</button>
       </form>
       <h3>Donor List</h3>
-      <ul id="donorList"></ul>
+      <table id="donorList">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Blood Type</th>
+            <th>Contact</th>
+            <th>Date of Birth</th>
+            <th>Address</th>
+            <th>Last Donation Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
 
     <!-- Hospitals Tab -->
     <div id="hospitalsTab" class="tab-content">
       <h2>Hospitals</h2>
       <form id="hospitalForm">
+        <label for="hospitalName">Hospital Name</label>
         <input type="text" id="hospitalName" placeholder="Hospital Name" required>
+
+        <label for="hospitalLocation">Location</label>
         <input type="text" id="hospitalLocation" placeholder="Location" required>
+
+        <label for="hospitalContact">Contact</label>
         <input type="text" id="hospitalContact" placeholder="Contact" required>
+
         <button type="submit">Add Hospital</button>
       </form>
       <h3>Hospital List</h3>
-      <ul id="hospitalList"></ul>
+      <table id="hospitalList">
+        <thead>
+          <tr>
+            <th>Hospital Name</th>
+            <th>Location</th>
+            <th>Contact</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
-
-    <!-- Search Tab -->
-    <div id="searchTab" class="tab-content">
-      <h2>Search Entries</h2>
-      <form id="searchForm">
-        <div id="searchCriteriaContainer"></div>
-        <button type="button" onclick="addSearchGroup()">+ Add Table</button>
-        <br><br>
-        <button type="submit">Search</button>
-    </form>
-
-    <h3>Search Results</h3>
-    <ul id="searchResults"></ul>
-  </div>
-
-
 
     <!-- Blood Requests Tab -->
     <div id="requestsTab" class="tab-content">
       <h2>Blood Requests</h2>
       <form id="requestForm">
+        <label for="hospitalId">Hospital ID</label>
         <input type="text" id="hospitalId" placeholder="Hospital ID" required>
+
+        <label for="bloodTypeRequest">Blood Type</label>
         <input type="text" id="bloodTypeRequest" placeholder="Blood Type" required>
+
+        <label for="urgency">Urgency</label>
         <input type="text" id="urgency" placeholder="Urgency" required>
+
+        <label for="requestStatus">Status</label>
         <input type="text" id="requestStatus" placeholder="Status" required>
+
+        <label for="requestDate">Request Date</label>
         <input type="date" id="requestDate" required>
+
         <button type="submit">Add Request</button>
       </form>
       <h3>Requests List</h3>
-      <ul id="requestList"></ul>
+      <table id="requestList">
+        <thead>
+          <tr>
+            <th>Hospital ID</th>
+            <th>Blood Type</th>
+            <th>Urgency</th>
+            <th>Status</th>
+            <th>Request Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
 
     <!-- Appointments Tab -->
     <div id="appointmentsTab" class="tab-content">
       <h2>Appointments</h2>
       <form id="appointmentForm">
+        <label for="donorId">Donor ID</label>
         <input type="text" id="donorId" placeholder="Donor ID" required>
+
+        <label for="appointmentDate">Appointment Date</label>
         <input type="date" id="appointmentDate" required>
+
+        <label for="status">Status</label>
         <input type="text" id="status" placeholder="Status" required>
+
         <button type="submit">Schedule Appointment</button>
       </form>
       <h3>Appointments List</h3>
-      <ul id="appointmentList"></ul>
+      <table id="appointmentList">
+        <thead>
+          <tr>
+            <th>Donor ID</th>
+            <th>Appointment Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
 
     <!-- Blood Inventory Tab -->
     <div id="inventoryTab" class="tab-content">
       <h2>Blood Inventory</h2>
       <form id="inventoryForm">
+        <label for="hospitalIdInventory">Hospital ID</label>
         <input type="text" id="hospitalIdInventory" placeholder="Hospital ID" required>
+
+        <label for="bloodTypeInventory">Blood Type</label>
         <input type="text" id="bloodTypeInventory" placeholder="Blood Type" required>
+
+        <label for="quantity">Quantity</label>
         <input type="number" id="quantity" placeholder="Quantity" required>
+
+        <label for="expiryDate">Expiry Date</label>
         <input type="date" id="expiryDate" placeholder="Expiry Date" required>
+
         <button type="submit">Update Inventory</button>
       </form>
       <h3>Inventory List</h3>
-      <ul id="inventoryList"></ul>
+      <table id="inventoryList">
+        <thead>
+          <tr>
+            <th>Hospital ID</th>
+            <th>Blood Type</th>
+            <th>Quantity</th>
+            <th>Expiry Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
 
     <!-- Reports Tab -->
     <div id="reportsTab" class="tab-content">
       <h2>Reports</h2>
       <form id="reportForm">
+        <label for="hospitalIdReport">Hospital ID</label>
         <input type="text" id="hospitalIdReport" placeholder="Hospital ID" required>
+
+        <label for="bloodTypeReport">Blood Type</label>
         <input type="text" id="bloodTypeReport" placeholder="Blood Type" required>
+
+        <label for="shortageLevel">Shortage Level</label>
         <input type="text" id="shortageLevel" placeholder="Shortage Level" required>
+
+        <label for="reportDate">Report Date</label>
         <input type="date" id="reportDate" required>
+
         <button type="submit">Generate Report</button>
       </form>
       <h3>Reports List</h3>
-      <ul id="reportList"></ul>
+      <table id="reportList">
+        <thead>
+          <tr>
+            <th>Hospital ID</th>
+            <th>Blood Type</th>
+            <th>Shortage Level</th>
+            <th>Report Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
 
     <!-- Transfusions Tab -->
     <div id="transfusionsTab" class="tab-content">
       <h2>Transfusions</h2>
       <form id="transfusionForm">
+        <label for="hospitalIdTransfusion">Hospital ID</label>
         <input type="text" id="hospitalIdTransfusion" placeholder="Hospital ID" required>
+
+        <label for="patientId">Patient ID</label>
         <input type="text" id="patientId" placeholder="Patient ID" required>
+
+        <label for="bloodTypeTransfusion">Blood Type</label>
         <input type="text" id="bloodTypeTransfusion" placeholder="Blood Type" required>
+
+        <label for="transfusionDate">Transfusion Date</label>
         <input type="date" id="transfusionDate" required>
+
         <button type="submit">Add Transfusion</button>
       </form>
       <h3>Transfusion List</h3>
-      <ul id="transfusionList"></ul>
+      <table id="transfusionList">
+        <thead>
+          <tr>
+            <th>Hospital ID</th>
+            <th>Patient ID</th>
+            <th>Blood Type</th>
+            <th>Transfusion Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
   </div>
 
@@ -148,170 +267,8 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       showTab('donorsTab'); // default tab
-
-      const tableColumns = {
-        donors: ['name', 'bloodType', 'contact', 'dob', 'address', 'lastDonationDate'],
-        hospitals: ['hospitalName', 'hospitalLocation', 'hospitalContact'],
-        bloodRequests: ['hospitalId', 'bloodTypeRequest', 'urgency', 'requestStatus', 'requestDate'],
-        appointments: ['donorId', 'appointmentDate', 'status'],
-        inventory: ['hospitalIdInventory', 'bloodTypeInventory', 'quantity', 'expiryDate'],
-        reports: ['hospitalIdReport', 'bloodTypeReport', 'shortageLevel', 'reportDate'],
-        transfusions: ['hospitalIdTransfusion', 'patientId', 'bloodTypeTransfusion', 'transfusionDate']
-      };
-
-      const searchTable = document.getElementById('searchTable');
-      const columnsContainer = document.getElementById('columnsContainer');
-      const searchForm = document.getElementById('searchForm');
-      const searchResults = document.getElementById('searchResults');
-
-      function updateSearchColumns() {
-        const selectedTable = searchTable.value;
-        const columns = tableColumns[selectedTable] || [];
-
-        columnsContainer.innerHTML = '';
-        const select = document.createElement('select');
-        select.className = 'searchColumn';
-        select.multiple = true;
-
-        columns.forEach(col => {
-          const option = document.createElement('option');
-          option.value = col;
-          option.textContent = col;
-          select.appendChild(option);
-        });
-
-        columnsContainer.appendChild(select);
-      }
-
-      searchTable.addEventListener('change', updateSearchColumns);
-      updateSearchColumns();
-
-      searchForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const table = searchTable.value;
-        const columns = Array.from(document.querySelector('.searchColumn').selectedOptions).map(opt => opt.value);
-        const query = document.getElementById('searchQuery').value.trim().toLowerCase();
-        searchResults.innerHTML = '';
-
-        if (!columns.length || !query) {
-          searchResults.innerHTML = '<li>Please select columns and enter a search query.</li>';
-          return;
-        }
-
-        const listId = {
-          donors: 'donorList',
-          hospitals: 'hospitalList',
-          bloodRequests: 'requestList',
-          appointments: 'appointmentList',
-          inventory: 'inventoryList',
-          reports: 'reportList',
-          transfusions: 'transfusionList'
-        }[table];
-
-        const items = document.querySelectorAll(`#${listId} li`);
-        items.forEach(item => {
-          const text = item.textContent.toLowerCase();
-          const matches = columns.some(col => text.includes(query));
-          if (matches) {
-            const clone = item.cloneNode(true);
-            searchResults.appendChild(clone);
-          }
-        });
-
-        if (!searchResults.children.length) {
-          searchResults.innerHTML = '<li>No matching results found.</li>';
-        }
-      });
     });
   </script>
-
-<script>
-  const tablesAndColumns = {
-    donors: ['name', 'bloodType', 'contact', 'dob', 'address', 'lastDonationDate'],
-    hospitals: ['hospitalName', 'hospitalLocation', 'hospitalContact'],
-    bloodRequests: ['hospitalId', 'bloodTypeRequest', 'urgency', 'requestStatus', 'requestDate'],
-    appointments: ['donorId', 'appointmentDate', 'status'],
-    inventory: ['hospitalIdInventory', 'bloodTypeInventory', 'quantity', 'expiryDate'],
-    reports: ['hospitalIdReport', 'bloodTypeReport', 'shortageLevel', 'reportDate'],
-    transfusions: ['hospitalIdTransfusion', 'patientId', 'bloodTypeTransfusion', 'transfusionDate']
-  };
-
-  function addSearchGroup() {
-    const container = document.getElementById('searchCriteriaContainer');
-    const groupIndex = container.children.length;
-    const groupDiv = document.createElement('div');
-    groupDiv.className = 'search-group';
-    groupDiv.innerHTML = `
-      <label>Table:
-        <select onchange="populateColumns(this, ${groupIndex})" class="table-select" required>
-          <option value="" disabled selected>Select table</option>
-          ${Object.keys(tablesAndColumns).map(table => `<option value="${table}">${table}</option>`).join('')}
-        </select>
-      </label>
-      <div class="columns-container" id="columns-${groupIndex}"></div>
-      <button type="button" onclick="addSearchGroup()">+ Add Table</button>
-    `;
-    container.appendChild(groupDiv);
-  }
-
-  function populateColumns(selectElement, groupIndex) {
-    const table = selectElement.value;
-    const columnContainer = document.getElementById(`columns-${groupIndex}`);
-    columnContainer.innerHTML = '';
-
-    tablesAndColumns[table].forEach(column => {
-      const columnDiv = document.createElement('div');
-      columnDiv.className = 'column-group';
-      columnDiv.innerHTML = `
-        <label>
-          <input type="checkbox" class="not-flag"> NOT
-        </label>
-        <label>${column}:
-          <input type="text" class="column-value" data-column="${column}">
-        </label>
-      `;
-      columnContainer.appendChild(columnDiv);
-    });
-  }
-
-  document.getElementById('searchForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const groups = document.querySelectorAll('.search-group');
-    const results = [];
-
-    groups.forEach(group => {
-      const table = group.querySelector('.table-select')?.value;
-      if (!table) return;
-
-      const columns = [];
-      const columnGroups = group.querySelectorAll('.column-group');
-      columnGroups.forEach(colGroup => {
-        const columnInput = colGroup.querySelector('.column-value');
-        const column = columnInput?.getAttribute('data-column');
-        const value = columnInput?.value;
-        const isNot = colGroup.querySelector('.not-flag')?.checked;
-        if (column && value !== '') {
-          columns.push({ column, value, not: isNot });
-        }
-      });
-
-      if (columns.length) {
-        results.push({ table, columns });
-      }
-    });
-
-    const resultList = document.getElementById('searchResults');
-    resultList.innerHTML = '';
-    results.forEach(group => {
-      const li = document.createElement('li');
-      li.textContent = `Table: ${group.table}, Filters: ${group.columns.map(c => `${c.not ? 'NOT ' : ''}${c.column} = "${c.value}"`).join(', ')}`;
-      resultList.appendChild(li);
-    });
-  });
-
-  // Load first table selector
-  addSearchGroup();
-</script>
 
   <script src="js/app.js"></script>
 </body>
